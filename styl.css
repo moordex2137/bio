@@ -49,3 +49,11 @@ body {
     padding-right: 40px;
     transform: translateY(-240px);
 }
+#linki {
+    translate: -200px -315px;
+    text-align: center;
+}
+#linki img {
+    width: 30px;
+    height: 30px;
+}
