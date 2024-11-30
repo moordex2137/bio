@@ -1,3 +1,7 @@
+@font-face {
+    font-family: czcionkajeden;
+    src: url(font/SHOWG.TTF);
+}
 body {
     font-family: Bookman Old Style;
     background-image: url(img/mikeyc.jpg);
@@ -38,7 +42,7 @@ body {
     border: 5px solid black;
 }
 #nick {
-    font-family: Showcard Gothic;
+    font-family: czcionkajeden;
     font-size: 240%;
     color: yellowgreen;
     text-align: right;
