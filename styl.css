@@ -1,0 +1,47 @@
+body {
+    font-family: Bookman Old Style;
+    background-image: url(img/mikeyc.jpg);
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#baner, #stopka {
+    width: 100%;
+    height: 100px;
+    float: left;
+}
+#lewo, #prawo {
+    width: 25%;
+    height: 700px;
+    float: left;
+}
+#main {
+    width: 50%;
+    height: 700px;
+    float: left;
+    box-shadow: 2px 2px 8px dimgray;
+    text-align: center;
+    background-color: rgb(0, 0, 0, 0.9);
+    border-radius: 20px;
+}
+#bannerd {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+#av {
+    height: 200px;
+    width: 200px;
+    border-radius: 200px;
+    transform: translateY(-150px);
+    border: 5px solid black;
+}
+#nick {
+    font-family: Showcard Gothic;
+    font-size: 240%;
+    color: yellowgreen;
+    text-align: right;
+    padding-right: 40px;
+    transform: translateY(-240px);
+}
