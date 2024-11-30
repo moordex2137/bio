@@ -32,7 +32,7 @@ body {
 #bannerd {
     width: 100%;
     height: auto;
-    border-radius: 20px;
+    border-radius: 20px 20px 0px 0px;
 }
 #av {
     height: 200px;
@@ -43,17 +43,36 @@ body {
 }
 #nick {
     font-family: czcionkajeden;
-    font-size: 240%;
-    color: yellowgreen;
+    font-size: 280%;
+    color: yellow;
     text-align: right;
     padding-right: 40px;
-    transform: translateY(-240px);
+    transform: translateY(-250px);
+    width: 50%;
+    float: right;
 }
 #linki {
-    translate: -200px -315px;
-    text-align: center;
+    translate: 0px -315px;
+    text-align: left;
+    padding-left: 2%;
+    word-spacing: 20px;
+    width: 50%;
+    float: left;
+    transform: translateY(-27px);
 }
 #linki img {
-    width: 30px;
-    height: 30px;
+    width: auto;
+    height: 50px;
+}
+@keyframes powieksz {
+    from {height: 50px;}
+    to {height: 55px;}
+}
+#linki img:hover {
+    animation-name: powieksz;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+#imj {
+    position: sticky;
 }
