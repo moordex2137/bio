@@ -46,7 +46,7 @@ body {
     font-size: 280%;
     color: yellow;
     text-align: right;
-    padding-right: 40px;
+    padding-right: 80px;
     transform: translateY(-250px);
     width: 50%;
     float: right;
@@ -55,7 +55,7 @@ body {
     translate: 0px -315px;
     text-align: left;
     padding-left: 2%;
-    word-spacing: 20px;
+    word-spacing: 30px;
     width: 50%;
     float: left;
     transform: translateY(-27px);
@@ -72,7 +72,4 @@ body {
     animation-name: powieksz;
     animation-duration: 1s;
     animation-fill-mode: forwards;
-}
-#imj {
-    position: sticky;
 }
