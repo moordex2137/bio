@@ -4,45 +4,93 @@ const DISCORD_API_URL = `https://discord.com/api/v9/users/${DISCORD_ID}`;
 
 async function updateUserProfile() {
     try {
-        const response = await fetch(API_URL);
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        const lanyardResponse = await fetch(API_URL);
+        if (!lanyardResponse.ok) {
+            throw new Error(`Lanyard HTTP error! status: ${lanyardResponse.status}`);
         }
+        const lanyardData = await lanyardResponse.json();
+        console.log('Full Lanyard API Response:', lanyardData);
 
-        const data = await response.json();
-        console.log('Lanyard API Response:', data);
-
-        if (data.success === false) {
-            throw new Error('Failed to fetch user data');
+        if (lanyardData.success === false) {
+            throw new Error('Failed to fetch user data from Lanyard');
         }
 
         // Update avatar
         const avatarElement = document.getElementById('av');
-        const avatarHash = data.data.discord_user.avatar;
+        const avatarHash = lanyardData.data.discord_user.avatar;
         if (avatarHash) {
             avatarElement.src = `https://cdn.discordapp.com/avatars/${DISCORD_ID}/${avatarHash}?size=512`;
         }
 
-        // Update banner
+        // Get banner element
         const bannerElement = document.getElementById('bannerd');
-        if (data.data.discord_user.banner) {
-            const bannerUrl = `https://cdn.discordapp.com/banners/${DISCORD_ID}/${data.data.discord_user.banner}?size=1024`;
-            console.log('Setting banner:', bannerUrl);
-            bannerElement.style.backgroundImage = `url('${bannerUrl}')`;
-        } else {
-            console.log('No banner found, checking premium type:', data.data.discord_user.premium_type);
-            // If user has Nitro, they might have a profile banner even without a banner hash
-            if (data.data.discord_user.premium_type > 0) {
-                const nitroUrl = `https://cdn.discordapp.com/banners/${DISCORD_ID}/a_${data.data.discord_user.avatar}?size=1024`;
-                console.log('Trying Nitro banner:', nitroUrl);
-                bannerElement.style.backgroundImage = `url('${nitroUrl}')`;
+        console.log('Banner element found:', bannerElement);
+        
+        // Check for banner data
+        const bannerData = lanyardData.data.discord_user.banner;
+        console.log('Banner data from API:', bannerData);
+
+        if (bannerData) {
+            let bannerUrl;
+            
+            // Check if banner is animated
+            if (bannerData.startsWith('a_')) {
+                bannerUrl = `https://cdn.discordapp.com/banners/${DISCORD_ID}/${bannerData}?size=1024`;
+            } else {
+                bannerUrl = `https://cdn.discordapp.com/banners/${DISCORD_ID}/${bannerData}?size=1024`;
             }
+            
+            console.log('Setting banner URL:', bannerUrl);
+            // Try to load the image first to verify it exists
+            const img = new Image();
+            img.onload = () => {
+                bannerElement.src = bannerUrl;
+                bannerElement.style.display = 'block';
+            };
+            img.onerror = () => {
+                console.log('Banner image failed to load, trying fallback');
+                handleBannerFallback(bannerElement, lanyardData);
+            };
+            img.src = bannerUrl;
+        } else {
+            console.log('No banner data available, using fallback');
+            handleBannerFallback(bannerElement, lanyardData);
         }
 
     } catch (error) {
-        console.error('Error fetching user profile:', error);
+        console.error('Error in updateUserProfile:', error);
+        const bannerElement = document.getElementById('bannerd');
+        handleBannerFallback(bannerElement, { data: { discord_user: { accent_color: 0x005552 } } });
     }
+}
+
+function handleBannerFallback(bannerElement, lanyardData) {
+    console.log('Handling banner fallback');
+    // Use accent color if available, otherwise use site theme color
+    const accentColor = lanyardData.data.discord_user.accent_color ? 
+        '#' + lanyardData.data.discord_user.accent_color.toString(16).padStart(6, '0') :
+        '#005552';
+    
+    console.log('Using color:', accentColor);
+    // Create a canvas to generate a gradient image
+    const canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 240;
+    const ctx = canvas.getContext('2d');
+    
+    // Create gradient
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, `${accentColor}99`);
+    gradient.addColorStop(0.5, `${accentColor}66`);
+    gradient.addColorStop(1, `${accentColor}33`);
+    
+    // Fill canvas with gradient
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Set the canvas as the banner source
+    bannerElement.src = canvas.toDataURL();
+    bannerElement.style.display = 'block';
 }
 
 async function updateActivity() {

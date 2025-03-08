@@ -109,9 +109,7 @@ body::before {
     height: 100%;
     border-radius: 2vw 2vw 0 0;
     grid-row: 1;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    object-fit: cover;
     transition: all 0.3s ease;
     min-height: 200px;
     background-color: rgba(0, 0, 0, 0.3);
@@ -152,7 +150,7 @@ body::before {
 #nick {
     font-family: czcionkajeden;
     font-size: 3vw;
-    color: yellow;
+    color: #005552;
     position: absolute;
     right: 5%;
     top: 35%;
@@ -188,10 +186,14 @@ body::before {
     height: 5vh;
     width: auto;
     transition: all 0.3s ease;
+    filter: brightness(0.6) sepia(1) hue-rotate(145deg) saturate(1.5) contrast(1.2);
+    opacity: 0.85;
 }
 #linki img:hover {
     transform: scale(1.1);
-    filter: brightness(1.2);
+    filter: brightness(0.8) sepia(1) hue-rotate(145deg) saturate(1.8) contrast(1.2);
+    opacity: 1;
+    box-shadow: 0 0 15px rgba(0, 85, 82, 0.5);
 }
 .discord-status {
     display: flex;
