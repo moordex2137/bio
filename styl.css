@@ -3,7 +3,7 @@
     src: url(font/SHOWG.TTF);
 }
 body {
-    font-family: Bookman Old Style;
+    font-family: 'Montserrat', sans-serif;
     background: linear-gradient(135deg,
         rgba(0, 0, 0, 0.98) 0%,
         rgba(0, 0, 0, 0.95) 50%,
@@ -182,6 +182,36 @@ body::before {
     margin: 0;
     z-index: 1;
 }
+#linki a {
+    position: relative;
+    display: inline-block;
+}
+
+#linki a::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background: rgba(0, 85, 82, 0.9);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 133, 128, 0.3);
+}
+
+#linki a:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: -35px;
+}
+
 #linki img {
     height: 5vh;
     width: auto;
@@ -189,6 +219,7 @@ body::before {
     filter: brightness(0.6) sepia(1) hue-rotate(145deg) saturate(1.5) contrast(1.2);
     opacity: 0.85;
 }
+
 #linki img:hover {
     transform: scale(1.1);
     filter: brightness(0.8) sepia(1) hue-rotate(145deg) saturate(1.8) contrast(1.2);
@@ -261,9 +292,9 @@ body::before {
 }
 .activity-text {
     color: #dcddde;
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    font-size: 1.4em;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
+    font-size: 1.4em;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 51, 48, 0.7);
     line-height: 1.6;
