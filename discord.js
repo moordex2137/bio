@@ -238,34 +238,30 @@ function showActivity(index) {
         let imageUrl = null;
         
         if (activity.assets) {
-            // console.log('Activity assets:', activity.assets);
-            
             if (activity.assets.large_image) {
-                // console.log('Large image:', activity.assets.large_image);
-                
                 if (activity.assets.large_image.startsWith('mp:external/')) {
                     imageUrl = `https://media.discordapp.net/external/${activity.assets.large_image.slice(12)}`;
                 } else if (activity.assets.large_image.startsWith('spotify:')) {
                     imageUrl = `https://i.scdn.co/image/${activity.assets.large_image.slice(8)}`;
                 } else if (activity.assets.large_image.startsWith('mp:')) {
                     imageUrl = `https://media.discordapp.net/${activity.assets.large_image.slice(3)}`;
-                } else {
+                } else if (activity.assets.large_image.startsWith('https://')) {
+                    imageUrl = activity.assets.large_image;
+                } else if (activity.application_id) {
                     imageUrl = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
                 }
-            }
-        } else if (activity.type === 0) {
-            // For games without Discord assets, try to get Steam image
-            const gameName = activity.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-            imageUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/250900/header.jpg`; // Isaac's Steam ID
-            
-            // Fallback images for specific games
-            const gameImages = {
-                'the-binding-of-isaac-rebirth': 'https://cdn.cloudflare.steamstatic.com/steam/apps/250900/header.jpg',
-                'visual-studio-code': 'https://code.visualstudio.com/assets/images/code-stable.png'
-            };
-            
-            if (gameImages[gameName]) {
-                imageUrl = gameImages[gameName];
+            } else if (activity.assets.small_image) {
+                if (activity.assets.small_image.startsWith('mp:external/')) {
+                    imageUrl = `https://media.discordapp.net/external/${activity.assets.small_image.slice(12)}`;
+                } else if (activity.assets.small_image.startsWith('spotify:')) {
+                    imageUrl = `https://i.scdn.co/image/${activity.assets.small_image.slice(8)}`;
+                } else if (activity.assets.small_image.startsWith('mp:')) {
+                    imageUrl = `https://media.discordapp.net/${activity.assets.small_image.slice(3)}`;
+                } else if (activity.assets.small_image.startsWith('https://')) {
+                    imageUrl = activity.assets.small_image;
+                } else if (activity.application_id) {
+                    imageUrl = `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.small_image}.png`;
+                }
             }
         }
 
@@ -275,16 +271,17 @@ function showActivity(index) {
             if (imageUrl) {
                 activityImage.style.display = 'block';
                 activityImage.onerror = () => {
-                    // console.error('Failed to load image:', imageUrl);
                     activityImage.style.display = 'none';
+                    activityText.style.borderRadius = '10px';
                 };
                 activityImage.onload = () => {
-                    // console.log('Successfully loaded image:', imageUrl);
+                    activityImage.style.display = 'block';
+                    activityText.style.borderRadius = '0 10px 10px 0';
                 };
                 activityImage.src = imageUrl;
             } else {
-                // console.log('No image URL available');
                 activityImage.style.display = 'none';
+                activityText.style.borderRadius = '10px';
             }
 
             // Update text content
