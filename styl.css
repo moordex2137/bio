@@ -17,6 +17,10 @@ body {
     overflow: hidden;
     position: relative;
     min-width: 1200px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 body::before {
