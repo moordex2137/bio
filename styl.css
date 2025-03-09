@@ -586,110 +586,195 @@ body::before {
     body {
         min-width: unset;
         overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
     }
 
     #main {
-        width: 95vw;
-        height: 90vh;
-        margin: 20px auto;
+        width: 92vw;
+        height: 95vh;
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin: 2vh auto;
+    }
+
+    #bannerd {
+        min-height: 150px;
     }
 
     #av {
-        height: 25vw;
-        width: 25vw;
+        height: 22vh;
+        width: 22vh;
+        top: 20%;
+        border-width: 0.3vh;
     }
 
     #nick {
-        font-size: 6vw;
-        right: 50%;
-        transform: translateX(50%);
-        top: 40%;
+        font-size: 7vw;
+        right: 0;
+        left: 0;
+        top: 42%;
+        transform: none;
         width: 100%;
+        text-align: center;
     }
 
     #linki {
-        left: 50%;
-        transform: translateX(-50%);
-        top: 50%;
-        width: 80%;
-        gap: 4vw;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 55%;
+        transform: none;
+        width: 100%;
+        gap: 5vw;
+        justify-content: center;
     }
 
     #linki img {
-        height: 8vw;
-        width: 8vw;
-        padding: 1vw;
+        height: 6vh;
+        width: 6vh;
+        padding: 1vh;
     }
 
     #badges {
-        top: calc(30% + 10vw);
-        padding: 8px 16px;
-        gap: 10px;
+        top: 32%;
+        width: auto;
+        max-width: 90%;
+        padding: 1vh 2vh;
+        gap: 1.5vh;
     }
 
     #badges img {
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
     }
 
     #badges img[src*="nitrogold.png"],
     #badges img[src*="balance.svg"] {
-        width: 28px;
-        height: 28px;
+        width: 22px;
+        height: 22px;
     }
 
     #opis {
-        top: 60%;
-        height: 38%;
-        padding: 10px;
+        top: 65%;
+        height: 32%;
+        padding: 1vh;
+        gap: 1vh;
+    }
+
+    .opis-box {
+        height: calc(50% - 0.5vh);
     }
 
     .activity-text {
-        font-size: 1.2em;
-        padding: 10px;
+        font-size: 1.1em;
+        padding: 1vh;
+        line-height: 1.4;
     }
 
-    #lewo, #prawo {
+    .activity-image {
+        max-width: 30%;
+    }
+
+    #lewo, #prawo, #baner, #stopka {
         display: none;
     }
 
+    .activity-nav {
+        opacity: 1;
+        bottom: 5px;
+        right: 5px;
+    }
+
     .activity-nav button {
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+
+    .activity-counter {
+        bottom: 5px;
+        left: 5px;
     }
 }
 
 /* Small Mobile Devices */
 @media screen and (max-width: 480px) {
     #main {
-        height: 95vh;
+        width: 96vw;
+        height: 98vh;
+        margin: 1vh auto;
     }
 
     #av {
-        height: 30vw;
-        width: 30vw;
+        height: 20vh;
+        width: 20vh;
+        top: 18%;
     }
 
     #nick {
         font-size: 8vw;
+        top: 40%;
     }
 
     #linki {
-        gap: 6vw;
+        top: 52%;
+        gap: 4vw;
     }
 
     #linki img {
-        height: 10vw;
-        width: 10vw;
-    }
-
-    .activity-text {
-        font-size: 1em;
+        height: 5vh;
+        width: 5vh;
+        padding: 0.8vh;
     }
 
     #badges {
-        flex-wrap: wrap;
-        justify-content: center;
+        top: 30%;
+        padding: 0.8vh 1.6vh;
+        gap: 1.2vh;
+    }
+
+    #badges img {
+        width: 20px;
+        height: 20px;
+    }
+
+    #badges img[src*="nitrogold.png"],
+    #badges img[src*="balance.svg"] {
+        width: 18px;
+        height: 18px;
+    }
+
+    #opis {
+        top: 62%;
+        height: 35%;
+        padding: 0.8vh;
+    }
+
+    .activity-text {
+        font-size: 0.9em;
+    }
+
+    .activity-image {
+        max-width: 35%;
+    }
+}
+
+/* Portrait Orientation Specific Fixes */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    #main {
+        height: auto;
+        min-height: 95vh;
+        margin: 2.5vh auto;
+    }
+
+    #opis {
+        position: relative;
+        top: 25vh;
+        height: auto;
+        min-height: 30vh;
+        margin-bottom: 2vh;
     }
 }
