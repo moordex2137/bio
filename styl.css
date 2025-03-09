@@ -580,3 +580,116 @@ body::before {
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)) brightness(1.3);
     z-index: 3;
 }
+
+/* Mobile Responsive Design */
+@media screen and (max-width: 768px) {
+    body {
+        min-width: unset;
+        overflow-y: auto;
+    }
+
+    #main {
+        width: 95vw;
+        height: 90vh;
+        margin: 20px auto;
+    }
+
+    #av {
+        height: 25vw;
+        width: 25vw;
+    }
+
+    #nick {
+        font-size: 6vw;
+        right: 50%;
+        transform: translateX(50%);
+        top: 40%;
+        width: 100%;
+    }
+
+    #linki {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 50%;
+        width: 80%;
+        gap: 4vw;
+    }
+
+    #linki img {
+        height: 8vw;
+        width: 8vw;
+        padding: 1vw;
+    }
+
+    #badges {
+        top: calc(30% + 10vw);
+        padding: 8px 16px;
+        gap: 10px;
+    }
+
+    #badges img {
+        width: 32px;
+        height: 32px;
+    }
+
+    #badges img[src*="nitrogold.png"],
+    #badges img[src*="balance.svg"] {
+        width: 28px;
+        height: 28px;
+    }
+
+    #opis {
+        top: 60%;
+        height: 38%;
+        padding: 10px;
+    }
+
+    .activity-text {
+        font-size: 1.2em;
+        padding: 10px;
+    }
+
+    #lewo, #prawo {
+        display: none;
+    }
+
+    .activity-nav button {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+    #main {
+        height: 95vh;
+    }
+
+    #av {
+        height: 30vw;
+        width: 30vw;
+    }
+
+    #nick {
+        font-size: 8vw;
+    }
+
+    #linki {
+        gap: 6vw;
+    }
+
+    #linki img {
+        height: 10vw;
+        width: 10vw;
+    }
+
+    .activity-text {
+        font-size: 1em;
+    }
+
+    #badges {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
