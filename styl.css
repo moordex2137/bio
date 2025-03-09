@@ -102,7 +102,7 @@ body::before {
     );
     border-radius: 2vw;
     display: grid;
-    grid-template-rows: 30% auto;
+    grid-template-rows: 25% auto;
 }
 #bannerd {
     width: 100%;
@@ -110,18 +110,38 @@ body::before {
     border-radius: 2vw 2vw 0 0;
     grid-row: 1;
     object-fit: cover;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
     min-height: 200px;
     background-color: rgba(0, 0, 0, 0.3);
     position: relative;
+    display: block;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+#bannerd::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
 }
 #av {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
-    top: 30%;
-    height: 15vh;
-    width: 15vh;
+    top: 25%;
+    height: 18vh;
+    width: 18vh;
     border-radius: 50%;
     border: 0.5vh solid #003330;
     box-shadow: 0 0 1vw rgba(0, 133, 128, 0.4);
@@ -155,6 +175,7 @@ body::before {
     right: 5%;
     top: 35%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-shadow: 0.2vw 0.2vw 0.4vw rgba(0,0,0,0.5);
@@ -163,6 +184,7 @@ body::before {
     width: fit-content;
     height: fit-content;
     z-index: 1;
+    gap: 8px;
 }
 #nick p {
     margin: 0;
@@ -177,7 +199,7 @@ body::before {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2vw;
+    gap: 1.5vw;
     padding: 0;
     margin: 0;
     z-index: 1;
@@ -213,19 +235,33 @@ body::before {
 }
 
 #linki img {
-    height: 5vh;
-    width: auto;
+    height: 4.5vh;
+    width: 4.5vh;
     transition: all 0.3s ease;
-    filter: brightness(0.6) sepia(1) hue-rotate(145deg) saturate(1.5) contrast(1.2);
+    filter: brightness(0.5) sepia(1) hue-rotate(142deg) saturate(3) contrast(0.8);
     opacity: 0.85;
+    object-fit: contain;
+    padding: 0.6vh;
+}
+
+#imj {
+    height: 4.5vh !important;
+    width: 4.5vh !important;
+    padding: 0.6vh !important;
+    filter: invert(1) brightness(0.5) sepia(1) hue-rotate(142deg) saturate(3) contrast(0.8) !important;
 }
 
 #linki img:hover {
     transform: scale(1.1);
-    filter: brightness(0.8) sepia(1) hue-rotate(145deg) saturate(1.8) contrast(1.2);
+    filter: brightness(0.6) sepia(1) hue-rotate(142deg) saturate(3) contrast(0.8);
     opacity: 1;
     box-shadow: 0 0 15px rgba(0, 85, 82, 0.5);
 }
+
+#imj:hover {
+    filter: invert(1) brightness(0.6) sepia(1) hue-rotate(142deg) saturate(3) contrast(0.8) !important;
+}
+
 .discord-status {
     display: flex;
     align-items: stretch;
@@ -280,6 +316,21 @@ body::before {
 .status-indicator.offline {
     background-color: #747f8d;
 }
+.activity-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    position: relative;
+    transform: translateX(0);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.activity-container.slide-in {
+    animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.activity-container.slide-out {
+    animation: slideOutLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
 .activity-image {
     height: 100%;
     aspect-ratio: 1/1;
@@ -299,7 +350,6 @@ body::before {
     text-shadow: 2px 2px 4px rgba(0, 51, 48, 0.7);
     line-height: 1.6;
     letter-spacing: 0.2px;
-    transition: all 0.3s ease;
     padding: 15px;
     background: linear-gradient(45deg, rgba(0, 85, 82, 0.2), rgba(0, 133, 128, 0.1));
     border-radius: 0 10px 10px 0;
@@ -315,41 +365,40 @@ body::before {
     white-space: normal;
     box-sizing: border-box;
 }
-.activity-text::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 0 10px 10px 0;
-    border: 1px solid rgba(0, 133, 128, 0.3);
-    pointer-events: none;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
+.activity-text-content {
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    text-shadow: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
 }
-.activity-text:hover::before {
-    border-color: rgba(0, 133, 128, 0.5);
-    box-shadow: 0 0 15px rgba(0, 133, 128, 0.3);
+.activity-text-content.fade-out {
+    opacity: 0;
 }
-@keyframes fadeIn {
+.activity-text-content.fade-in {
+    animation: fadeInText 0.3s ease forwards;
+}
+@keyframes fadeInText {
     from {
         opacity: 0;
-        transform: translateY(10px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
     }
-}
-.discord-status .activity-text {
-    animation: fadeIn 0.5s ease-out;
 }
 .activity-text[data-status="playing"],
 .activity-text[data-status="streaming"],
 .activity-text[data-status="offline"] {
     font-size: 1.4em;
     background: linear-gradient(45deg, rgba(0, 85, 82, 0.2), rgba(0, 133, 128, 0.1));
+}
+.activity-text.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
 }
 .opis-box {
     width: 100%;
@@ -372,6 +421,7 @@ body::before {
     border: 1px solid rgba(0, 85, 82, 0.15);
     transition: all 0.3s ease;
 }
+
 .opis-box:hover {
     background: linear-gradient(135deg,
         rgba(0, 0, 0, 0.95) 0%,
@@ -385,4 +435,144 @@ body::before {
 .opis-box iframe {
     border-radius: 0.5vw;
     background: transparent;
+}
+.activity-nav {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.discord-status:hover .activity-nav {
+    opacity: 1;
+}
+
+.activity-nav button {
+    background: rgba(0, 85, 82, 0.3);
+    border: 1px solid rgba(0, 133, 128, 0.3);
+    color: #dcddde;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    padding: 0;
+    transform: scale(1);
+}
+
+.activity-nav button:hover {
+    background: rgba(0, 85, 82, 0.5);
+    border-color: rgba(0, 133, 128, 0.5);
+    box-shadow: 0 0 15px rgba(0, 133, 128, 0.3);
+    transform: scale(1.1);
+}
+
+.activity-nav button:active {
+    transform: scale(0.95);
+}
+
+.activity-nav button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.activity-counter {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #dcddde;
+    font-size: 12px;
+    opacity: 0.7;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.discord-status .activity-text {
+    animation: fadeIn 0.5s ease-out;
+}
+
+#badges {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(30% + 7vh);
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 85, 82, 0.4) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    background-size: 200% 200%;
+    animation: badgeGradient 8s ease infinite;
+    padding: 6px 12px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6),
+                inset 0 0 4px rgba(0, 85, 82, 0.5);
+    border: 1px solid rgba(0, 85, 82, 0.3);
+}
+
+@keyframes badgeGradient {
+    0% {
+        background-position: 0% 50%;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.6),
+                    inset 0 0 4px rgba(0, 85, 82, 0.5);
+    }
+    50% {
+        background-position: 100% 50%;
+        box-shadow: 0 0 20px rgba(0, 85, 82, 0.4),
+                    inset 0 0 8px rgba(0, 85, 82, 0.6);
+    }
+    100% {
+        background-position: 0% 50%;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.6),
+                    inset 0 0 4px rgba(0, 85, 82, 0.5);
+    }
+}
+
+#badges img {
+    width: 28px;
+    height: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)) brightness(1.1);
+    transition: all 0.3s ease;
+    display: block;
+    object-fit: contain;
+    padding: 0;
+    margin: 0;
+}
+
+#badges img[src*="nitrogold.png"],
+#badges img[src*="balance.svg"] {
+    width: 25px;
+    height: 25px;
+}
+
+#badges img:hover {
+    transform: scale(1.2) translateY(-2px);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)) brightness(1.3);
+    z-index: 3;
 }

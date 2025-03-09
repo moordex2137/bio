@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>moordeks</title>
+    <link rel="icon" type="image/png" href="img/heart.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
@@ -14,19 +15,34 @@
     <section id="main">
         <img id="bannerd">
         <img id="av">
+        <div id="badges">
+            <img src="img/nitrogold.png" alt="Nitro Gold" title="Nitro Gold">
+            <img src="img/balance.svg" alt="HypeSquad Balance" title="HypeSquad Balance">
+            <img src="img/developer.png" alt="Active Developer" title="Active Developer">
+            <img src="img/boost.svg" alt="Boost" title="Boost">
+            <img src="img/legacy.png" alt="Legacy" title="Legacy">
+            <img src="img/quest.png" alt="Quest" title="Quest">
+        </div>
         <section id="nick">
             <p>moordeks</p>
         </section>
         <section id="linki">
-            <a href="mailto:krystianwolanin69@gmail.com" data-tooltip="Email"><img id="imj" src="img/mail.png"></a>
-            <a href="https://www.instagram.com/moordeks/" data-tooltip="Instagram"><img id="imd" src="img/insta.png"></a>
-            <a href="https://discord.gg/3enZuEs8Zf" data-tooltip="Discord"><img id="imt" src="img/discord.png"></a>
-            <a href="https://steamcommunity.com/id/mordeks/" data-tooltip="Steam"><img id="imc" src="img/steam.png"></a>
+            <a href="https://www.tiktok.com/@moordeks" data-tooltip="TikTok" target="_blank"><img id="imj" src="img/tiktok.png"></a>
+            <a href="https://www.instagram.com/moordeks/" data-tooltip="Instagram" target="_blank"><img id="imd" src="img/insta.png"></a>
+            <a href="https://discord.com/invite/nnkcyySQk2" data-tooltip="Discord" target="_blank"><img id="imt" src="img/discord.png"></a>
+            <a href="https://steamcommunity.com/id/mordeks/" data-tooltip="Steam" target="_blank"><img id="imc" src="img/steam.png"></a>
         </section>
         <section id="opis">
             <div class="opis-box">
                 <div class="discord-status">
-                    <div class="activity-text">Loading activity...</div>
+                    <div class="activity-text">
+                        <div class="activity-text-content">Loading activity...</div>
+                    </div>
+                    <div class="activity-nav">
+                        <button onclick="prevActivity()">←</button>
+                        <button onclick="nextActivity()">→</button>
+                    </div>
+                    <div class="activity-counter"></div>
                 </div>
             </div>
             <div class="opis-box">
