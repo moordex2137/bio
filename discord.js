@@ -21,7 +21,7 @@ async function updateUserProfile() {
             throw new Error('Failed to fetch user data from Lanyard');
         }
 
-        console.log('Lanyard Data:', lanyardData); // Debug log
+        // console.log('Lanyard Data:', lanyardData); // Debug log
 
         const userData = lanyardData.data.discord_user;
 
@@ -37,7 +37,7 @@ async function updateUserProfile() {
 
         // Update activities
         if (lanyardData.data.activities && lanyardData.data.activities.length > 0) {
-            console.log('Activities:', lanyardData.data.activities); // Debug log
+            // console.log('Activities:', lanyardData.data.activities); // Debug log
             activities = lanyardData.data.activities.sort((a, b) => {
                 if (a.type === 0 && b.type !== 0) return -1;
                 if (a.type !== 0 && b.type === 0) return 1;
@@ -47,7 +47,7 @@ async function updateUserProfile() {
             showActivity(currentActivityIndex);
             updateActivityNav();
         } else {
-            console.log('No activities found'); // Debug log
+            // console.log('No activities found'); // Debug log
             activities = [];
             showActivity(0);
         }
@@ -220,7 +220,7 @@ function updateActivity(data) {
 
 function showActivity(index) {
     const activity = activities[index];
-    console.log('Showing activity:', activity);
+    // console.log('Showing activity:', activity);
 
     const discordStatus = document.querySelector('.discord-status');
     let activityText = document.querySelector('.activity-text');
@@ -238,10 +238,10 @@ function showActivity(index) {
         let imageUrl = null;
         
         if (activity.assets) {
-            console.log('Activity assets:', activity.assets);
+            // console.log('Activity assets:', activity.assets);
             
             if (activity.assets.large_image) {
-                console.log('Large image:', activity.assets.large_image);
+                // console.log('Large image:', activity.assets.large_image);
                 
                 if (activity.assets.large_image.startsWith('mp:external/')) {
                     imageUrl = `https://media.discordapp.net/external/${activity.assets.large_image.slice(12)}`;
@@ -275,15 +275,15 @@ function showActivity(index) {
             if (imageUrl) {
                 activityImage.style.display = 'block';
                 activityImage.onerror = () => {
-                    console.error('Failed to load image:', imageUrl);
+                    // console.error('Failed to load image:', imageUrl);
                     activityImage.style.display = 'none';
                 };
                 activityImage.onload = () => {
-                    console.log('Successfully loaded image:', imageUrl);
+                    // console.log('Successfully loaded image:', imageUrl);
                 };
                 activityImage.src = imageUrl;
             } else {
-                console.log('No image URL available');
+                // console.log('No image URL available');
                 activityImage.style.display = 'none';
             }
 

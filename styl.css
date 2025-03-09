@@ -586,36 +586,59 @@ body::before {
     body {
         min-width: unset;
         overflow-y: auto;
-        height: auto;
-        min-height: 100vh;
+        height: 100vh;
+        position: fixed;
+        background-attachment: fixed;
     }
 
     #main {
-        width: 92vw;
-        height: 95vh;
-        position: relative;
+        width: 100%;
+        height: 100%;
+        position: fixed;
         top: 0;
         left: 0;
         transform: none;
-        margin: 2vh auto;
+        margin: 0;
+        border-radius: 0;
+        overflow-y: auto;
     }
 
     #bannerd {
-        min-height: 150px;
+        height: 25vh;
+        min-height: unset;
+        border-radius: 0;
     }
 
     #av {
-        height: 22vh;
-        width: 22vh;
-        top: 20%;
-        border-width: 0.3vh;
+        height: 80px;
+        width: 80px;
+        top: calc(25vh - 40px);
+        border-width: 2px;
+    }
+
+    #badges {
+        top: calc(25vh + 10px);
+        padding: 4px 8px;
+        gap: 4px;
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    #badges img {
+        width: 16px;
+        height: 16px;
+    }
+
+    #badges img[src*="nitrogold.png"],
+    #badges img[src*="balance.svg"] {
+        width: 14px;
+        height: 14px;
     }
 
     #nick {
-        font-size: 7vw;
+        font-size: 20px;
         right: 0;
         left: 0;
-        top: 42%;
+        top: calc(25vh + 45px);
         transform: none;
         width: 100%;
         text-align: center;
@@ -625,57 +648,41 @@ body::before {
         position: absolute;
         left: 0;
         right: 0;
-        top: 55%;
+        top: calc(25vh + 85px);
         transform: none;
         width: 100%;
-        gap: 5vw;
+        gap: 15px;
         justify-content: center;
     }
 
     #linki img {
-        height: 6vh;
-        width: 6vh;
-        padding: 1vh;
-    }
-
-    #badges {
-        top: 32%;
-        width: auto;
-        max-width: 90%;
-        padding: 1vh 2vh;
-        gap: 1.5vh;
-    }
-
-    #badges img {
-        width: 24px;
         height: 24px;
-    }
-
-    #badges img[src*="nitrogold.png"],
-    #badges img[src*="balance.svg"] {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        padding: 4px;
     }
 
     #opis {
-        top: 65%;
-        height: 32%;
-        padding: 1vh;
-        gap: 1vh;
+        top: calc(25vh + 130px);
+        height: calc(75vh - 140px);
+        padding: 5px;
+        gap: 5px;
+        margin: 0;
+        position: relative;
     }
 
     .opis-box {
-        height: calc(50% - 0.5vh);
+        height: calc(50% - 2.5px);
+        border-radius: 8px;
     }
 
     .activity-text {
-        font-size: 1.1em;
-        padding: 1vh;
-        line-height: 1.4;
+        font-size: 13px;
+        padding: 8px;
+        line-height: 1.3;
     }
 
     .activity-image {
-        max-width: 30%;
+        max-width: 25%;
     }
 
     #lewo, #prawo, #baner, #stopka {
@@ -684,81 +691,72 @@ body::before {
 
     .activity-nav {
         opacity: 1;
-        bottom: 5px;
-        right: 5px;
+        bottom: 4px;
+        right: 4px;
     }
 
     .activity-nav button {
-        width: 36px;
-        height: 36px;
-        font-size: 20px;
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
     }
 
     .activity-counter {
-        bottom: 5px;
-        left: 5px;
+        bottom: 4px;
+        left: 4px;
+        font-size: 10px;
     }
 }
 
 /* Small Mobile Devices */
 @media screen and (max-width: 480px) {
-    #main {
-        width: 96vw;
-        height: 98vh;
-        margin: 1vh auto;
-    }
-
     #av {
-        height: 20vh;
-        width: 20vh;
-        top: 18%;
-    }
-
-    #nick {
-        font-size: 8vw;
-        top: 40%;
-    }
-
-    #linki {
-        top: 52%;
-        gap: 4vw;
-    }
-
-    #linki img {
-        height: 5vh;
-        width: 5vh;
-        padding: 0.8vh;
+        height: 70px;
+        width: 70px;
+        top: calc(25vh - 35px);
     }
 
     #badges {
-        top: 30%;
-        padding: 0.8vh 1.6vh;
-        gap: 1.2vh;
+        top: calc(25vh + 8px);
+        padding: 3px 6px;
+        gap: 3px;
     }
 
     #badges img {
-        width: 20px;
-        height: 20px;
+        width: 14px;
+        height: 14px;
     }
 
     #badges img[src*="nitrogold.png"],
     #badges img[src*="balance.svg"] {
-        width: 18px;
-        height: 18px;
+        width: 12px;
+        height: 12px;
+    }
+
+    #nick {
+        font-size: 18px;
+        top: calc(25vh + 40px);
+    }
+
+    #linki {
+        top: calc(25vh + 75px);
+        gap: 12px;
+    }
+
+    #linki img {
+        height: 20px;
+        width: 20px;
+        padding: 3px;
     }
 
     #opis {
-        top: 62%;
-        height: 35%;
-        padding: 0.8vh;
+        top: calc(25vh + 115px);
+        height: calc(75vh - 125px);
     }
 
     .activity-text {
-        font-size: 0.9em;
-    }
-
-    .activity-image {
-        max-width: 35%;
+        font-size: 12px;
+        padding: 6px;
     }
 }
 
